@@ -1,0 +1,56 @@
+
+
+.right {
+    float: right;
+}
+
+.left { 
+    float: left;
+}
+
+#nav { 
+    display: block;
+    background-color: white;
+    display: inline-block;
+    width: 98vw;
+    border: 3px solid white;
+    border-radius: 5px;
+    margin: 6px; 
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: white;
+}
+
+#quizBody {
+    text-align: center;
+    padding: 12vh;
+}
+
+a {
+    padding: 10px 8px 10px 8px;
+    text-decoration: none;
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+button {
+    border: none;
+    background-color:lightgray;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 4px;
+
+}
+
+button:hover {
+    transition-duration: 0.3s;
+    background-color: darkgray;
+}
+
+#quiz {
+    text-align: center;
+}
