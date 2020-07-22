@@ -27,12 +27,12 @@ var questions = [{
     choices: ["True( )", "False( )"],
     answer: "True"
 }
-]
+] 
 
 // variables
 
 var score = 0;
-var currenQuestion = -1;
+var currentQuestion = -1;
 var timeLeft = 0;
 var timer;
 
@@ -43,12 +43,12 @@ function start() {
     document.getElementById("timeLeft").innerHTML = timeLeft;
 
 
-    timer = setInterval(function () {
+    timer = setInterval(function() {
         timeLeft--;
         document.getElementById("timeLeft").innerHTML = timeLeft;
 
         if (timeLeft <= 0) {
-            clearInterval(time);
+            clearInterval(timer);
             endGame();
         }
     }, 1000);
@@ -79,11 +79,10 @@ function setScore() {
 
 function getScore() {
     var quizContent = `
-    <h1>` + localStorage.getItem("highscore") + `</h1>
+    <h1>` + localStorage.getItem("highscore") + `</h1><br>
     <h2>` + localStorage.getItem("highscoreName") + `'s highscore is:</h2>
 
-    <button onClick="clearScore()">Clear Score!</button><button onClick="resetGame()">Play Again!</button>
-`;
+    <button onClick="clearScore()">Clear Score!</button><button onClick="resetGame()">Play Again!</button>`;
 
     document.getElementById("quizBody").innerHTML = quizContent;
 
@@ -106,9 +105,9 @@ function resetGame() {
     document.getElementById("timeLeft").innerHTML = timeLeft;
 
     var quizContent = `
-    <h1>JavaScript Quiz!<h1>
-    <h2>Click to Play!<h2>
-    <button onClick="Start()"<button/>`;
+    <h1>JavaScript Quiz!</h1>
+    <h3>Click to Play!</h3>
+    <button onClick="start()">Start!<button/>`;
 
     document.getElementById("quizBody").innerHTML = quizContent;
 
@@ -134,7 +133,7 @@ function next() {
 
     for (var buttonLoop = 0; buttonLoop < questions[currentQuestion].choices.length; buttonLoop++) {
         var buttonCode = "<button on click=\"[ANS]\">[CHOICE]</button";
-        buttonCode = buttonCode.replace("[CHOICE]", questions[currentQuestions].choices[buttonLoop]);
+        buttonCode = buttonCode.replace("[CHOICE]", questions[currentQuestion].choices[buttonLoop]);
         if (questions[currentQuestion].choices[buttonLoop] == questions[currentQuestion].answer) {
             buttonCode = buttonCode.replace("[ANS}", "correct()");
         } else {
