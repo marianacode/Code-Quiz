@@ -119,7 +119,7 @@ function resetGame() {
 }
 
 function incorrect() {
-    timeLeft -= 0; 
+    timeLeft -= 10; 
     next();
 }
 
