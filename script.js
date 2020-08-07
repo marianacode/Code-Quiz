@@ -2,32 +2,34 @@
 
 var questions = [{
     question: "Inside which HTML element do we put the JavaScript?",
-    choices: ["<javascript>( )", "<script>( )", "<js>( )", "<scripting>( )"],
-    answer: "<script>( )"
+    choices: ["javascript( )", "script( )", "js( )", "scripting( )"],
+    answer: "script( )"
 },
 {
     question: "Where is the correct place to insert a JavaScript?",
-    choices: ["Both the <head> section and the <body> section( )", "The <body> section( )", "The <head> section( )", "Any place( )"],
-    answer: "Both the <head> section and the <body> section( )"
+    choices: ["Both the head section and the body section( )", "The body section( )", "The head section( )", "Any place( )"],
+    answer: "Both the head section and the body section( )"
 
 },
 {
     question: "How do you write 'Hello World' in an alert box?",
     choices: ["msg('Hello World');( )", "msgBox('Hello World');( )", "alertBox('Hello World';)( )", "alert('Hello World');( )"],
-    answer: "alert('Hello World')( );"
+    answer: "alert('Hello World');( )"
 },
 {
     question: "Which of the following is not a reserved word in JavaScript?",
     choices: ["interface( )", "throws( )", "program( )", "short( )"],
-    answer: "c"
+    answer: "program( )"
 },
 
 {
-    question: "Can you assign an anonymous funtion to a variable?",
+    question: "Can you assign an anonymous function to a variable?",
     choices: ["True( )", "False( )"],
-    answer: "True"
+    answer: "True( )"
 }
-] 
+]
+
+
 
 // variables
 
@@ -43,7 +45,7 @@ function start() {
     document.getElementById("timeLeft").innerHTML = timeLeft;
 
 
-    timer = setInterval(function() {
+    timer = setInterval(function () {
         timeLeft--;
         document.getElementById("timeLeft").innerHTML = timeLeft;
 
@@ -68,8 +70,9 @@ function endGame() {
 
     document.getElementById("quizBody").innerHTML = quizContent;
 
-
 }
+
+
 
 function setScore() {
     localStorage.setItem("highscore", score);
@@ -94,7 +97,6 @@ function clearScore() {
     resetGame();
 
 }
-
 function resetGame() {
     clearInterval(timer);
     score = 0;
@@ -105,46 +107,57 @@ function resetGame() {
     document.getElementById("timeLeft").innerHTML = timeLeft;
 
     var quizContent = `
-    <h1>JavaScript Quiz!</h1>
-    <h3>Click to Play!</h3>
-    <button onClick="start()">Start!<button/>`;
+    <h1>
+        JavaScript Quiz!
+    </h1>
+    <h3>
+        Click to play!   
+    </h3>
+    <button onclick="start()">Start!</button>`;
 
     document.getElementById("quizBody").innerHTML = quizContent;
-
 }
-
 
 function incorrect() {
-    timeLeft -= 10;
+    timeLeft -= 0; 
     next();
-
 }
+
+
+function correct() {
+    score += 20;
+    next();
+}
+
 
 function next() {
     currentQuestion++;
 
-    if (currentQuestion > questions.length -1) { 
+    if (currentQuestion > questions.length - 1) {
         endGame();
         return;
-
     }
 
-    var quizContent = "<h2>" + questions[currentQuestion].title + "</h2>"
+
+
+    var quizContent = "<h2>" + questions[currentQuestion].question + "</h2>"
 
     for (var buttonLoop = 0; buttonLoop < questions[currentQuestion].choices.length; buttonLoop++) {
-        var buttonCode = "<button on click=\"[ANS]\">[CHOICE]</button";
+        var buttonCode = "<button onclick=\"[ANS]\">[CHOICE]</button>"; 
         buttonCode = buttonCode.replace("[CHOICE]", questions[currentQuestion].choices[buttonLoop]);
         if (questions[currentQuestion].choices[buttonLoop] == questions[currentQuestion].answer) {
-            buttonCode = buttonCode.replace("[ANS}", "correct()");
+            buttonCode = buttonCode.replace("[ANS]", "correct()");
         } else {
             buttonCode = buttonCode.replace("[ANS]", "incorrect()");
-
         }
         quizContent += buttonCode
-        }
-
-        document.getElementById("quizBody").innerHTML = quizContent;
     }
+
+
+    document.getElementById("quizBody").innerHTML = quizContent;
+
+ 
+}
 
 
 
